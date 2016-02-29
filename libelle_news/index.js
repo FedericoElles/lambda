@@ -85,7 +85,7 @@ if (!module.parent) {
 		res.end(JSON.stringify(data,undefined,2));
 		}).listen(process.env.PORT || 4000);
 	});
-else {
+} else {
 	exports = function(context, data){
 		getData(function(data){
 			context.success(data);	
