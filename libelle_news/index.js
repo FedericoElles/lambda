@@ -86,7 +86,7 @@ if (!module.parent) {
 		}).listen(process.env.PORT || 4000);
 	});
 } else {
-	exports = function(context, data){
+	exports.libelle_news = function(context, data){
 		getData(function(data){
 			context.success(data);	
 		});
