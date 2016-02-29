@@ -73,15 +73,22 @@ function extractor(data){
 	return r;
 }
 
-
-getData(function(data){
-	http.createServer(function (req, res) {
-	res.writeHead(200, {
-		'Content-Type': 'application/json; charset=utf-8',
-		'Access-Control-Allow-Origin' : '*',
-		'Access-Control-Allow-Methods' : 'GET',
-		'Access-Control-Allow-Headers' : 'Content-Type'
+if (!module.parent) {
+	getData(function(data){
+		http.createServer(function (req, res) {
+		res.writeHead(200, {
+			'Content-Type': 'application/json; charset=utf-8',
+			'Access-Control-Allow-Origin' : '*',
+			'Access-Control-Allow-Methods' : 'GET',
+			'Access-Control-Allow-Headers' : 'Content-Type'
+		});
+		res.end(JSON.stringify(data,undefined,2));
+		}).listen(process.env.PORT || 4000);
 	});
-	res.end(JSON.stringify(data,undefined,2));
-	}).listen(process.env.PORT || 4000);
-});
+else {
+	exports = function(){
+		getData(function(data){
+			context.success(data);	
+		});
+	};
+}
