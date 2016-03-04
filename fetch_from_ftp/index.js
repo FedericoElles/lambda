@@ -1,5 +1,5 @@
 var Client = require('ftp');
-require('ssl-root-cas').inject();
+//require('ssl-root-cas').inject();
 
 exports.reqParams = ['user', 'pass', 'host', 'file'];
 
